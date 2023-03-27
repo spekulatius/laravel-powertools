@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Spekulatius\LaravelPowertools\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelPowertoolsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-powertools';
 
     public $description = 'My command';
 
