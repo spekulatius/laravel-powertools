@@ -16,10 +16,10 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('laravel-powertools')
-            ->hasConfigFile()
+            ->name('laravel-powertools');
+            // ->hasConfigFile()
             // ->hasViews()
             // ->hasMigration('create_laravel-powertools_table')
-            ->hasCommand(LaravelPowertoolsCommand::class);
+            // ->hasCommand(LaravelPowertoolsCommand::class);
     }
 }
