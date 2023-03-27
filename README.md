@@ -17,7 +17,6 @@ A simple trait for models to summarize the model-data as logging context. Imagin
 
 You can install the package via composer:
 
-
 ```bash
 composer require spekulatius/laravel-powertools
 ```
