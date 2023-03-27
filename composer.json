@@ -4,7 +4,8 @@
     "keywords": [
         "spekulatius",
         "laravel",
-        "laravel-powertools"
+        "laravel-powertools",
+        "laravel-utilities"
     ],
     "homepage": "https://github.com/spekulatius/laravel-powertools",
     "license": "MIT",
@@ -17,7 +18,7 @@
     "require": {
         "php": "^8.1",
         "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^9.0|^10.0"
+        "illuminate/contracts": "^10.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
