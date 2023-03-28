@@ -13,14 +13,19 @@ This is a personal collection of stuff I used across Laravel projects. Handy hel
 
 A simple trait for models to summarize the model-data as logging context. Imagine it like a slimmed down `->toArray()`. It's intended to be used similar to `\Log::error('....', $entry->toLog());`
 
+Requirements: None.
 
 ### Model Tracker
 
 Track (Log) changes to any properties on Models. Supports JSON/array queries. Configured, not coded.
 
-0. Start by exporting the configuration (`php artisan vendor:publish --tag="laravel-powertools-config"`), if you haven't done before. Enable it by including `APP_MODEL_TRACKER=true` in your `.env` file.
+**Requirements:**
 
-1. Now you configure any models to track with parameters in `config/powertools.php`:
+- Start by exporting the configuration (`php artisan vendor:publish --tag="laravel-powertools-config"`), if you haven't done before. Enable it by including `APP_MODEL_TRACKER=true` in your `.env` file.
+
+**Configuration**
+
+1. You can configure any models to track with parameters in `config/powertools.php`:
 
 ```php
 // in `config/powertools.php`:
