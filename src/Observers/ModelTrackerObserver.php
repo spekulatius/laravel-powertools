@@ -9,8 +9,8 @@ class ModelTrackerObserver
     public function saving(Model $model)
     {
         // Get the configuration for the model class, fallback on empty
-        $enabled = config('powertools.model-tracker.enabled', false);
-        $config = config('powertools.model-tracker.' . get_class($model), []);
+        $enabled = config('powertools.model_tracker.enabled', false);
+        $config = config('powertools.model_tracker.models.' . get_class($model), []);
 
         // Check if tracking is enabled and there is a configuration for this model.
         // If either of them are missing, we are done already.

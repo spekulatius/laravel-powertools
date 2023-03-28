@@ -7,7 +7,8 @@ return [
     | Masked fields
     |--------------------------------------------------------------------------
     |
-    | These properties will be replaced with [masked], when logged via toLog or the model tracker.
+    | These properties will be replaced with "[masked]",
+    |   when logged via toLog or the model tracker.
     |
     */
 
@@ -31,10 +32,12 @@ return [
         'enabled' => env('APP_MODEL_TRACKER', false),
 
         // Models to track
-        // \App\Models\Users::class => [
-        //     'name',
-        //     'email',         // Email isn't changed often. Let's keep an eye on this event.
-        //     'password',      // Fields like this are automatically masked
-        // ],
+        'models' => [
+            // \App\Models\Users::class => [
+            //     'name',
+            //     'email',         // Email isn't changed often. Let's keep an eye on this event.
+            //     'password',      // Fields like this are automatically masked
+            // ],
+        ],
     ],
 ];

@@ -7,7 +7,7 @@
 
 This is a personal collection of stuff I used across Laravel projects. Handy helpers, tools, utils, etc.
 
-## Features
+## Toolbox
 
 ### ToLog
 
@@ -18,40 +18,25 @@ A simple trait for models to summarize the model-data as logging context. Imagin
 
 Track (Log) changes to any properties on Models. Supports JSON/array queries. Configured, not coded.
 
-0. Start by exporting the configuration (`php artisan vendor:publish --tag="laravel-powertools-config"`), if you haven't done before.
+0. Start by exporting the configuration (`php artisan vendor:publish --tag="laravel-powertools-config"`), if you haven't done before. Enable it by including `APP_MODEL_TRACKER=true` in your `.env` file.
 
 1. Now you configure any models to track with parameters in `config/powertools.php`:
 
 ```php
 // in `config/powertools.php`:
-return [
-    // ...
 
-    /*
-    |--------------------------------------------------------------------------
-    | Model (Property) Tracker
-    |--------------------------------------------------------------------------
-    |
-    | These properties will be logged when changed.
-    |
-    | It hooks the Observer automatically in, when listed here.
-    |
-    */
-
-    'model-tracker' => [
+    'model_tracker' => [
         // Disabled by default: Either enable it using the .env key or set it to true here.
         'enabled' => env('APP_MODEL_TRACKER', false),
 
         // Models to track
-        \App\Models\Users::class => [
-            'name',
-            'email',         // Email isn't changed often. Let's keep an eye on this event.
-            'password',      // Fields like this are automatically masked: [masked]
-
-            // It can also access JSON values and track these:
-            'custom_permissions.group_slug',
+        'models' => [
+            // \App\Models\Users::class => [
+            //     'name',
+            //     'email',         // Email isn't changed often. Let's keep an eye on this event.
+            //     'password',      // Fields like this are automatically masked
+            // ],
         ],
-    ],
 
     // ...
 ];
@@ -72,6 +57,8 @@ $user->save();
 ```
 
 #### Example 2: Masking Senisible Fields/data.
+
+You can define some fields to be `[masked]` in the data:
 
 ```php
 // Changing the password will not log the password:
@@ -109,7 +96,24 @@ php artisan vendor:publish --tag="laravel-powertools-config"
 This is the contents of the published config file:
 
 ```php
+<?php
+
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Masked fields
+    |--------------------------------------------------------------------------
+    |
+    | These properties will be replaced with "[masked]",
+    |   when logged via toLog or the model tracker.
+    |
+    */
+
+    'masked_fields' => [
+        'password',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Model (Property) Tracker
@@ -121,12 +125,18 @@ return [
     |
     */
 
-    'model-tracker' => [
-        // \App\Models\Users::class => [
-        //     'name',
-        //     'email',         // Email isn't changed often. Let's keep an eye on this event.
-        //     'password',      // Fields like this are automatically masked
-        // ],
+    'model_tracker' => [
+        // Disabled by default: Either enable it using the .env key or set it to true here.
+        'enabled' => env('APP_MODEL_TRACKER', false),
+
+        // Models to track
+        'models' => [
+            // \App\Models\Users::class => [
+            //     'name',
+            //     'email',         // Email isn't changed often. Let's keep an eye on this event.
+            //     'password',      // Fields like this are automatically masked
+            // ],
+        ],
     ],
 ];
 ```
