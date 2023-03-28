@@ -17,23 +17,19 @@ class ModelTrackerObserver
             return;
         }
 
-        // Get the original attributes
-        $originalAttributes = $model->getOriginal();
+        // // Get the original attributes
+        // $originalAttributes = $model->getOriginal();
 
-        // Get the updated attributes
-        $updatedAttributes = $model->getAttributes();
+        // // Get the updated attributes
+        // $updatedAttributes = $model->getAttributes();
 
+        // // Check which attributes to track
+        // $trackedAttributes = $config['attributes'];
 
-        // Check which attributes to track
-        $trackedAttributes = $config['attributes'];
+        // // Get the changed attributes
+        // $changedAttributes = array_intersect_key($updatedAttributes, array_flip($trackedAttributes));
 
-        // Get the changed attributes
-        $changedAttributes = array_intersect_key($updatedAttributes, array_flip($trackedAttributes));
-
-        // Log the changed attributes
-        foreach ($changedAttributes as $attribute => $value) {
-            // Log the change or perform any other desired action
-            \Log::
-        }
+        // // Log the changed attributes
+        // \Log::info(get_class($model) . ' #' . $model->id . ' (Update):', $changedAttributes);
     }
 }

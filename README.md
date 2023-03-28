@@ -13,6 +13,72 @@ This is a personal collection of stuff I used across Laravel projects. Handy hel
 
 A simple trait for models to summarize the model-data as logging context. Imagine it like a slimmed down `->toArray()`. It's intended to be used similar to `\Log::error('....', $entry->toLog());`
 
+
+### Model Tracker
+
+Track (Log) changes to any properties on Models. Supports JSON/array queries. Configured, not coded.
+
+0. Start by exporting the configuration (`php artisan vendor:publish --tag="laravel-powertools-config"`), if you haven't done before.
+
+1. Now you configure any models to track with parameters in `config/powertools.php`:
+
+```php
+// in `config/powertools.php`:
+return [
+    // ...
+
+    /*
+    |--------------------------------------------------------------------------
+    | Model (Property) Tracker
+    |--------------------------------------------------------------------------
+    |
+    | These properties will be logged when changed.
+    |
+    | It hooks the Observer automatically in, when listed here.
+    |
+    */
+
+    'model-tracker' => [
+        \App\Models\Users::class => [
+            'name',
+            'email',         // Email isn't changed often. Let's keep an eye on this event.
+            'password',      // Fields like this are automatically masked: [masked]
+
+            // It can also access JSON values and track these:
+            'custom_permissions.group_slug',
+        ],
+    ],
+
+    // ...
+];
+```
+
+#### Example 1: Keep an eye on critical properties
+
+The Model Tracker can assist in keeping an eye on business or security-critical parameters as an additional layer of protection.
+
+```php
+// Change the email address and save.
+$user = User::find(1234);
+$user->email = 'new@email.com';
+$user->save();
+
+// Will log:
+// production.INFO: User #1234 (Update): {"email_old": "old@email.com", "email_new": "new@email.com"}
+```
+
+#### Example 2: Masking Senisible Fields/data.
+
+```php
+// Changing the password will not log the password:
+$user = User::find(1234);
+$user->update(['password' => 'some_password']);
+$user->save();
+
+// Will log:
+// production.INFO: User #1234 (Update): {"password_old": "[masked]", "password_new": "[masked]"}
+```
+
 ## Installation
 
 You can install the package via composer:
@@ -30,7 +96,7 @@ php artisan migrate
 ```
 -->
 
-You can publish the config file with:
+Some tools require configuration:
 
 ```bash
 php artisan vendor:publish --tag="laravel-powertools-config"
@@ -59,7 +125,6 @@ return [
         // ],
     ],
 ];
-
 ```
 
 <!--

@@ -1,6 +1,20 @@
 <?php
 
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Masked fields
+    |--------------------------------------------------------------------------
+    |
+    | These properties will be replaced with [masked], when logged via toLog or the model tracker.
+    |
+    */
+
+    'masked_fields' => [
+        'password',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Model (Property) Tracker
@@ -12,7 +26,7 @@ return [
     |
     */
 
-    'model-tracker' => [
+    'model_tracker' => [
         // \App\Models\Users::class => [
         //     'name',
         //     'email',         // Email isn't changed often. Let's keep an eye on this event.
