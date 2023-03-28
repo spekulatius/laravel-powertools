@@ -4,7 +4,7 @@ namespace Spekulatius\LaravelPowertools;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Spekulatius\LaravelPowertools\Observers\VariableTrackerObserver;
+use Spekulatius\LaravelPowertools\Observers\ModelTrackerObserver;
 use Spekulatius\LaravelPowertools\Commands\LaravelPowertoolsCommand;
 
 class LaravelPowertoolsServiceProvider extends PackageServiceProvider
@@ -13,12 +13,12 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
     {
         // We should automatically track any variable changes on these models.
         foreach (config('variable_tracker.trackable_models', []) as $model => $attributes) {
-            $model::observe(VariableTrackerObserver::class);
+            $model::observe(ModelTrackerObserver::class);
         }
 
         // AI:
         // foreach (Config::get('variable_tracker.trackable_models', []) as $model => $attributes) {
-        //     $model::observe(VariableTrackerObserver::class);
+        //     $model::observe(ModelTrackerObserver::class);
         // }
     }
 

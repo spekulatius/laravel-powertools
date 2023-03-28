@@ -4,15 +4,16 @@ namespace Spekulatius\LaravelPowertools\Observers;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VariableTrackerObserver
+class ModelTrackerObserver
 {
     public function saving(Model $model)
     {
-        // Get the configuration for the model class
-        $config = config('variable-tracker.' . get_class($model), []);
+        // Get the configuration for the model class, fallback on empty
+        $config = config('powertools.model-tracker.' . get_class($model), []);
 
         // Check if tracking is enabled for this model and there is something.
-        if (!$config || is_array($config) && count($config) === 0) {
+        if (count($config) === 0) {
+            // !$config || is_array($config) && count($config) === 0
             return;
         }
 
@@ -32,6 +33,7 @@ class VariableTrackerObserver
         // Log the changed attributes
         foreach ($changedAttributes as $attribute => $value) {
             // Log the change or perform any other desired action
+            \Log::
         }
     }
 }
