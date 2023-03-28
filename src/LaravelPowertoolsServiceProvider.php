@@ -12,12 +12,14 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
     public function boot(): void
     {
         // We should automatically track any variable changes on these models.
-        foreach (config('variable_tracker.trackable_models', []) as $model => $attributes) {
+        foreach (config('powertools.model_tracker', []) as $model => $attributes) {
+            // Skip enabled here or change config?
+
             $model::observe(ModelTrackerObserver::class);
         }
 
         // AI:
-        // foreach (Config::get('variable_tracker.trackable_models', []) as $model => $attributes) {
+        // foreach (Config::get('powertools.model_tracker', []) as $model => $attributes) {
         //     $model::observe(ModelTrackerObserver::class);
         // }
     }
