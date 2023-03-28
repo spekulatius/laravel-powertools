@@ -19,13 +19,15 @@ Requirements: None.
 
 Track (Log) changes to any properties on Models. Supports JSON/array queries. Configured, not coded.
 
-**Requirements:**
+#### Requirements
 
-- Start by exporting the configuration (`php artisan vendor:publish --tag="laravel-powertools-config"`), if you haven't done before. Enable it by including `APP_MODEL_TRACKER=true` in your `.env` file.
+- Start by exporting the configuration (`php artisan vendor:publish --tag="laravel-powertools-config"`), if you haven't done before.
 
-**Configuration**
+- Enable it by including `APP_MODEL_TRACKER=true` in your `.env` file.
 
-1. You can configure any models to track with parameters in `config/powertools.php`:
+#### Configuration
+
+You can configure any models to track with parameters in `config/powertools.php`:
 
 ```php
 // in `config/powertools.php`:
