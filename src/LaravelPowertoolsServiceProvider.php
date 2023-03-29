@@ -4,8 +4,8 @@ namespace Spekulatius\LaravelPowertools;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Spekulatius\LaravelPowertools\Observers\ModelTrackerObserver;
 use Spekulatius\LaravelPowertools\Commands\LaravelPowertoolsCommand;
+use Spekulatius\LaravelPowertools\Observers\ModelTrackerObserver;
 
 class LaravelPowertoolsServiceProvider extends PackageServiceProvider
 {
