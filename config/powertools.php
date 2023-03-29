@@ -13,7 +13,15 @@ return [
     */
 
     'masked_fields' => [
-        'password',
+        '/password/i',
+        '/passwd/i',
+        '/hash/i',
+        '/checksum/i',
+        '/salt/i',
+        '/token/i',
+        '/key/i',
+        '/secret/i',
+        '/acl/i',
     ],
 
     /*
@@ -40,4 +48,5 @@ return [
             // ],
         ],
     ],
+
 ];

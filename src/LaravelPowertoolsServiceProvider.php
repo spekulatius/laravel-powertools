@@ -2,6 +2,7 @@
 
 namespace Spekulatius\LaravelPowertools;
 
+use Illuminate\Support\Collection;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spekulatius\LaravelPowertools\Commands\LaravelPowertoolsCommand;
@@ -15,6 +16,22 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
         foreach (config('powertools.model_tracker.models', []) as $model => $attributes) {
             $model::observe(ModelTrackerObserver::class);
         }
+
+        // Mask some sensitive data in a collection
+        Collection::macro('maskSensitiveData', function () {
+            // Apply the mask to the sensitive data based on the regexes and custom fields
+            return $this->map(function ($value, $key) {
+                // Check if the key matches one of the regexes
+                foreach (config('powertools.masked_fields', []) as $regex) {
+                    if (preg_match($regex, $key) && $value !== null) {
+                        return '[masked]';
+                    }
+                }
+
+                // Return the original value if it's not sensitive
+                return $value;
+            });
+        });
     }
 
     public function configurePackage(Package $package): void

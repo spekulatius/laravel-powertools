@@ -35,8 +35,8 @@ trait ToLog
                 // Convert any Carbon instances to dates
                 ->map(fn ($value) => $value instanceof Carbon ? $value->format('Y-m-d H:i:s') : $value)
 
-                // Mask any undesirable logging keys (e.g. password, salt, etc.)
-                ->map(fn ($value, $key) => in_array($key, ['password', 'salt']) && ! is_null($value) ? '[masked]' : $value)
+                // Mask any undesirable logging keys (e.g. password, salt, etc.).
+                ->maskSensitiveData()
 
                 // Replace new lines and multi-spaces with single spaces, trim the result.
                 ->map(fn ($value) => is_string($value) ? trim(preg_replace('/(\s*[\r\n]+\s*|\s+)/', ' ', $value)) : $value)
