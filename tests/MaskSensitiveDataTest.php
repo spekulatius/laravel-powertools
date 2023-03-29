@@ -2,10 +2,6 @@
 
 namespace Spekulatius\LaravelPowertools\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
-use Spekulatius\LaravelPowertools\LaravelPowertoolsServiceProvider;
-
 class MaskSensitiveDataTest extends TestCase
 {
     public function testMaskSensitiveData()
