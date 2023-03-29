@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class ModelTrackerObserver
 {
-    public function saving(Model $model)
+    public function saving(Model $model): void
     {
-        // Get the configuration for the model class, fallback on empty
-        $enabled = config('powertools.model_tracker.enabled', false);
-        $config = config('powertools.model_tracker.models.'.get_class($model), []);
+        // Get the configuration for the model class, fallback on an empty array.
+        $enabled = (bool) config('powertools.model_tracker.enabled', false);
+        $config = (array) config('powertools.model_tracker.models.'.get_class($model), []);
 
         // Check if tracking is enabled and there is a configuration for this model.
         // If either of them are missing, we are done already.
         if (! $enabled || count($config) === 0) {
-            // !$config || is_array($config) && count($config) === 0
             return;
         }
 

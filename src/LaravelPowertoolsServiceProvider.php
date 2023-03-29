@@ -13,8 +13,8 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
     public function boot(): void
     {
         // Model Tracker: We should automatically track any property changes on these models.
-        foreach (config('powertools.model_tracker.models', []) as $model => $attributes) {
-            $model::observe(ModelTrackerObserver::class);
+        foreach ((array) config('powertools.model_tracker.models', []) as $model => $attributes) {
+            app($model)::observe(ModelTrackerObserver::class);
         }
 
         // Mask some sensitive data in a collection
