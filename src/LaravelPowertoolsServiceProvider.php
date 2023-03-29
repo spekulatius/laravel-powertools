@@ -19,11 +19,19 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
 
         // Mask some sensitive data in a collection
         Collection::macro('maskSensitiveData', function () {
+            // Prepare the masked fields regexes for prime time.
+            $regexes = (array) config('powertools.masked_fields', []);
+
             // Apply the mask to the sensitive data based on the regexes and custom fields
-            return $this->map(function ($value, $key) {
+            return $this->map(function ($value, $key) use (&$regexes) {
+                // Early return null - masking this won't make any sense...
+                if ($value === null) {
+                    return null;
+                }
+
                 // Check if the key matches one of the regexes
-                foreach (config('powertools.masked_fields', []) as $regex) {
-                    if (preg_match($regex, $key) && $value !== null) {
+                foreach ($regexes as $regex) {
+                    if (preg_match($regex, $key)) {
                         return '[masked]';
                     }
                 }

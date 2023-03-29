@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Spekulatius\\\\LaravelPowertools\\\\LaravelPowertoolsServiceProvider\\:\\:map\\(\\)\\.$#"
+			count: 1
+			path: src/LaravelPowertoolsServiceProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$pattern of function preg_match expects string, mixed given\\.$#"
+			count: 1
+			path: src/LaravelPowertoolsServiceProvider.php
