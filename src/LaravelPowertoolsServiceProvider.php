@@ -11,17 +11,10 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
 {
     public function boot(): void
     {
-        // We should automatically track any variable changes on these models.
-        foreach (config('powertools.model_tracker', []) as $model => $attributes) {
-            // Skip enabled here or change config?
-
+        // Model Tracker: We should automatically track any property changes on these models.
+        foreach (config('powertools.model_tracker.models', []) as $model => $attributes) {
             $model::observe(ModelTrackerObserver::class);
         }
-
-        // AI:
-        // foreach (Config::get('powertools.model_tracker', []) as $model => $attributes) {
-        //     $model::observe(ModelTrackerObserver::class);
-        // }
     }
 
     public function configurePackage(Package $package): void
@@ -32,8 +25,8 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('laravel-powertools');
-            ->hasConfigFile()
+            ->name('laravel-powertools')
+            ->hasConfigFile();
         // ->hasViews()
         // ->hasMigration('create_laravel-powertools_table')
         // ->hasCommand(LaravelPowertoolsCommand::class);

@@ -13,6 +13,9 @@ This is a personal collection of stuff I used across Laravel projects. Handy hel
 
 A simple trait for models to summarize the model-data as logging context. Imagine it like a slimmed down `->toArray()`. It's intended to be used similar to `\Log::error('....', $entry->toLog());`
 
+#### Requirements
+
+For the standard-usable, you'll need no additional requirements. If you'd like to customerize the "\[masked\]"-util, feel free to export the config as described under [Installation](#Installation).
 Requirements: None.
 
 ### Model Tracker
@@ -76,6 +79,9 @@ $user->save();
 // Will log:
 // production.INFO: User #1234 (Update): {"password_old": "[masked]", "password_new": "[masked]"}
 ```
+
+You can adjust the list of masked properties in the config-fil under `masked_fields`.
+
 
 ## Installation
 
