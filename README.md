@@ -9,7 +9,7 @@ This is a personal collection of handy helpers, tools, and utilities that I've u
 
 ## Features
 
-### `maskSensitiveData`: Collection Makro to mask sensitive
+### `maskSensitiveData`: Collection Makro to mask sensitive data
 
 `maskSensitiveData` Laravel Collection macro and provides the functionality to mask sensitive data in a collection. The macro prepares masked fields regular expressions for use, and applies the mask to the sensitive data based on the regexes and custom fields. It maps over the collection and replaces any data matching the regular expressions with a mask value of [masked]. This functionality is useful when dealing with collections of sensitive data and is designed to keep the sensitive data secure.
 
