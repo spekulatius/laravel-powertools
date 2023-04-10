@@ -9,9 +9,13 @@ This is a personal collection of handy helpers, tools, and utilities that I've u
 
 ## Features
 
-### ToLog
+### `maskSensitiveData`: Collection Makro to mask sensitive
 
-The `ToLog` trait is a simple trait to add to models that allows you to summarize model data as logging context. It's essentially a slimmed-down version of the `->toArray()` method, and it's meant to be used in a similar approach similar to `\Log::error('....', $entry->toLog());`.
+`maskSensitiveData` Laravel Collection macro and provides the functionality to mask sensitive data in a collection. The macro prepares masked fields regular expressions for use, and applies the mask to the sensitive data based on the regexes and custom fields. It maps over the collection and replaces any data matching the regular expressions with a mask value of [masked]. This functionality is useful when dealing with collections of sensitive data and is designed to keep the sensitive data secure.
+
+### `ToLog`: Model Trait to log context
+
+The `ToLog` trait is a simple trait to add to models that allows you to summarize model data as logging context. It's essentially a slimmed-down version of the `->toArray()` method, and it's meant to be used in a similar approach similar to `\Log::error('....', $entry->toLog());`. Already runs `maskSensitiveData` by design.
 
 ## Compatibility
 
