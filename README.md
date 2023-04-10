@@ -5,13 +5,17 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/spekulatius/laravel-powertools/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/spekulatius/laravel-powertools/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/spekulatius/laravel-powertools.svg?style=flat-square)](https://packagist.org/packages/spekulatius/laravel-powertools)
 
-This is a personal collection of stuff I used across Laravel projects. Handy helpers, tools, utils, etc. In development, use at your own risk.
+This is a personal collection of handy helpers, tools, and utilities that I've used across various Laravel projects. However, please note that these are intended for personal use and development, so please use at your own risk.
 
 ## Features
 
 ### ToLog
 
-A simple trait for models to summarize the model-data as logging context. Imagine it like a slimmed down `->toArray()`. It's intended to be used similar to `\Log::error('....', $entry->toLog());`
+The `ToLog` trait is a simple trait to add to models that allows you to summarize model data as logging context. It's essentially a slimmed-down version of the `->toArray()` method, and it's meant to be used in a similar approach similar to `\Log::error('....', $entry->toLog());`.
+
+## Compatibility
+
+This project has been tested on Laravel 10 using PHP 8.1 or 8.2. It should work on Laravel 9 as well, although it has not been tested on that version.
 
 ## Installation
 
