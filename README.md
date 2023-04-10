@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/spekulatius/laravel-powertools/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/spekulatius/laravel-powertools/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/spekulatius/laravel-powertools.svg?style=flat-square)](https://packagist.org/packages/spekulatius/laravel-powertools)
 
-This is a personal collection of stuff I used across Laravel projects. Handy helpers, tools, utils, etc.
+This is a personal collection of stuff I used across Laravel projects. Handy helpers, tools, utils, etc. In development, use at your own risk.
 
 ## Features
 
@@ -57,6 +57,8 @@ echo $laravelPowertools->echoPhrase('Hello, Spekulatius!');
 -->
 
 ## Testing
+
+The project is roughly tested on Laravel 10.
 
 ```bash
 composer test
