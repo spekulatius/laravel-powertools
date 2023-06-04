@@ -6,17 +6,23 @@ use Illuminate\Support\Collection;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spekulatius\LaravelPowertools\Commands\LaravelPowertoolsCommand;
+use Spekulatius\LaravelPowertools\Observers\ModelTrackerObserver;
 
 class LaravelPowertoolsServiceProvider extends PackageServiceProvider
 {
     public function boot(): void
     {
+        // Model Tracker: We should automatically track any property changes on these models.
+        foreach ((array) config('powertools.model_tracker.models', []) as $model => $attributes) {
+            app($model)::observe(ModelTrackerObserver::class);
+        }
+
         // Mask some sensitive data in a collection
         Collection::macro('maskSensitiveData', function () {
             // Prepare the masked fields regexes for prime time.
             $regexes = (array) config('powertools.masked_fields', []);
 
-            // Apply the mask to the sensitive data based on the regexes and custom fields
+            // Apply the mask to the sensitive data based on the regexes
             return $this->map(function ($value, $key) use (&$regexes) {
                 // Early return null - masking this won't make any sense...
                 if ($value === null) {
