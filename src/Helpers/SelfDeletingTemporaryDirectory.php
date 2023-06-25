@@ -12,6 +12,6 @@ class SelfDeletingTemporaryDirectory extends TemporaryDirectory
         parent::__construct($location);
 
         TemporaryDirectoryCleanupJob::dispatch($this)
-            ->delay(config('powertools.temporary_directory_clean_up'));
+            ->delay(now()->addMinutes(config('powertools.temporary_directory_clean_up')));
     }
 }
