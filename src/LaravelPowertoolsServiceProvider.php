@@ -25,7 +25,7 @@ class LaravelPowertoolsServiceProvider extends PackageServiceProvider
 
                 // Check if the key matches one of the regexes
                 foreach ($regexes as $regex) {
-                    if (preg_match($regex, $key)) {
+                    if (preg_match($regex, $key) > 0) {
                         return '[masked]';
                     }
                 }
