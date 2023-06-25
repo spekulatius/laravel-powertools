@@ -24,4 +24,15 @@ return [
         '/acl/i',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Self-deleting TemporaryDirectory
+    |--------------------------------------------------------------------------
+    |
+    | TTL for any self-deleting temporary directories, in minutes.
+    |
+    */
+
+    'temporary_directory_clean_up' => 120,
+
 ];
