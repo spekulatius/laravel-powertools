@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Helpers/SelfDeletingTemporaryDirectory.php
+
+		-
 			message: "#^Call to an undefined method Spekulatius\\\\LaravelPowertools\\\\LaravelPowertoolsServiceProvider\\:\\:map\\(\\)\\.$#"
 			count: 1
 			path: src/LaravelPowertoolsServiceProvider.php
