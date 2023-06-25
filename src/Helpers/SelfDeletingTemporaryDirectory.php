@@ -3,6 +3,7 @@
 namespace Spekulatius\LaravelPowertools\Helpers;
 
 use Spatie\TemporaryDirectory\TemporaryDirectory;
+use Spekulatius\LaravelPowertools\Jobs\TemporaryDirectoryCleanupJob;
 
 class SelfDeletingTemporaryDirectory extends TemporaryDirectory
 {
