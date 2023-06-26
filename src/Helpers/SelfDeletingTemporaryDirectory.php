@@ -7,7 +7,7 @@ use Spekulatius\LaravelPowertools\Jobs\TemporaryDirectoryCleanupJob;
 
 class SelfDeletingTemporaryDirectory extends TemporaryDirectory
 {
-    public function create(): self
+    public function create(): TemporaryDirectory
     {
         $instance = parent::create();
 

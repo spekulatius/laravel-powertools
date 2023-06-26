@@ -9,24 +9,24 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use Spekulatius\LaravelPowertools\Helpers\SelfDeletingTemporaryDirectory;
+use Spatie\TemporaryDirectory\TemporaryDirectory;
 
 class TemporaryDirectoryCleanupJob implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(
-        protected SelfDeletingTemporaryDirectory $selfDeletingTemporaryDirectory
+        protected TemporaryDirectory $temporaryDirectory
     ) {
     }
 
     public function handle(): void
     {
         try {
-            $this->selfDeletingTemporaryDirectory->delete();
+            $this->temporaryDirectory->delete();
         } catch (\Exception $e) {
             Log::error('SelfDeletingTemporaryDirectory: Failed to delete temp dir: '.$e->getMessage(), [
-                'path' => $this->selfDeletingTemporaryDirectory->path(),
+                'path' => $this->temporaryDirectory->path(),
             ]);
 
             throw $e;
@@ -36,6 +36,6 @@ class TemporaryDirectoryCleanupJob implements ShouldQueue, ShouldBeUnique
     // Tell Laravel how to determine the difference between unique jobs here.
     public function uniqueId()
     {
-        return $this->selfDeletingTemporaryDirectory->path();
+        return $this->temporaryDirectory->path();
     }
 }
