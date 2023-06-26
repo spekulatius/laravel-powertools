@@ -63,6 +63,7 @@ You can publish and run the migrations with:
 php artisan vendor:publish --tag="laravel-powertools-migrations"
 php artisan migrate
 ```
+-->
 
 You can publish the config file with:
 
@@ -70,6 +71,7 @@ You can publish the config file with:
 php artisan vendor:publish --tag="laravel-powertools-config"
 ```
 
+<!--
 This is the contents of the published config file:
 
 ```php
