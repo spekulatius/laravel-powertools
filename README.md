@@ -30,7 +30,7 @@ The `ToLog` trait is a simple trait to add to models that allows you to summariz
 
 ### `SelfDeletingTemporaryDirectory`
 
-An extension of [`Spaties TemporaryDirectory`](https://github.com/spatie/temporary-directory) to delete itself after 120 minutes.
+An extension of [`Spaties TemporaryDirectory`](https://github.com/spatie/temporary-directory) to delete itself after 120 minutes (configurable).
 
 ```php
 use Spekulatius\LaravelPowertools\Helpers\SelfDeletingTemporaryDirectory;
@@ -40,6 +40,12 @@ use Spekulatius\LaravelPowertools\Helpers\SelfDeletingTemporaryDirectory;
 $tempDir = new SelfDeletingTemporaryDirectory;
 
 // use like TemporaryDirectory from Spatie.
+```
+
+My common way to use this:
+
+```php
+$tempFile = (new SelfDeletingTemporaryDirectory)->create()->path('temp.zip');
 ```
 
 
