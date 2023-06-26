@@ -18,5 +18,7 @@ class SelfDeletingTemporaryDirectory extends TemporaryDirectory
 
             $this->previouslyScheduled = true;
         }
+
+        return parent::path($pathOrFilename);
     }
 }
