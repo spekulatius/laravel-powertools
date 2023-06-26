@@ -7,6 +7,7 @@
 
 This is a personal collection of handy helpers, tools, and utilities that I've used across various Laravel projects. However, please note that these are intended for personal use and development, so please use at your own risk.
 
+
 ## Features
 
 ### `maskSensitiveData`: Collection Makro to mask sensitive data
@@ -27,9 +28,31 @@ collect(['password' => 'this really should not be logged...'])
 
 The `ToLog` trait is a simple trait to add to models that allows you to summarize model data as logging context. It's essentially a slimmed-down version of the `->toArray()` method, and it's meant to be used in a similar approach similar to `\Log::error('....', $entry->toLog());`. Already runs `maskSensitiveData` by design.
 
+### `SelfDeletingTemporaryDirectory`
+
+An extension of [`Spaties TemporaryDirectory`](https://github.com/spatie/temporary-directory) to delete itself after 120 minutes (configurable).
+
+```php
+use Spekulatius\LaravelPowertools\Helpers\SelfDeletingTemporaryDirectory;
+
+// ...
+
+$tempDir = new SelfDeletingTemporaryDirectory;
+
+// use like TemporaryDirectory from Spatie.
+```
+
+My common way to use this:
+
+```php
+$tempFile = (new SelfDeletingTemporaryDirectory)->create()->path('temp.zip');
+```
+
+
 ## Compatibility
 
 This project has been tested on Laravel 10 using PHP 8.1 or 8.2. It should work on Laravel 9 as well, although it has not been tested on that version.
+
 
 ## Installation
 
@@ -46,6 +69,7 @@ You can publish and run the migrations with:
 php artisan vendor:publish --tag="laravel-powertools-migrations"
 php artisan migrate
 ```
+-->
 
 You can publish the config file with:
 
@@ -53,6 +77,7 @@ You can publish the config file with:
 php artisan vendor:publish --tag="laravel-powertools-config"
 ```
 
+<!--
 This is the contents of the published config file:
 
 ```php
@@ -74,6 +99,7 @@ echo $laravelPowertools->echoPhrase('Hello, Spekulatius!');
 ```
 -->
 
+
 ## Testing
 
 The project is roughly tested on Laravel 10.
@@ -86,18 +112,22 @@ composer test
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
 
 ## Security Vulnerabilities
 
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
+
 ## Credits
 
 - [Peter Thaleikis](https://github.com/spekulatius)
 - [All Contributors](../../contributors)
+
 
 ## License
 
