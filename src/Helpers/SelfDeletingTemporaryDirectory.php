@@ -7,11 +7,16 @@ use Spekulatius\LaravelPowertools\Jobs\TemporaryDirectoryCleanupJob;
 
 class SelfDeletingTemporaryDirectory extends TemporaryDirectory
 {
-    public function __construct(string $location = '')
-    {
-        parent::__construct($location);
+    protected bool $previouslyScheduled = false;
 
-        TemporaryDirectoryCleanupJob::dispatch($this)
-            ->delay(now()->addMinutes((int) config('powertools.temporary_directory_clean_up')));
+    // We hook into the commonly used `path`-method.
+    public function path(string $pathOrFilename = ''): string
+    {
+        if (! $this->previouslyScheduled) {
+            TemporaryDirectoryCleanupJob::dispatch($this)
+                ->delay(now()->addMinutes((int) config('powertools.temporary_directory_clean_up')));
+
+            $this->previouslyScheduled = true;
+        }
     }
 }
