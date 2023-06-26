@@ -34,7 +34,7 @@ class TemporaryDirectoryCleanupJob implements ShouldQueue, ShouldBeUnique
     }
 
     // Tell Laravel how to determine the difference between unique jobs here.
-    public function uniqueId()
+    public function uniqueId(): string
     {
         return $this->temporaryDirectory->path();
     }
