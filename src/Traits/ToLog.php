@@ -25,10 +25,11 @@ trait ToLog
     public function toLog(array $data = null): array
     {
         // If no $data is provided, we are using ->toArray()
-        if (is_null($data)) {
-            $data = $this->toArray();
-        }
+        return self::convert($data ?? $this->toArray());
+    }
 
+    public static function convert(array $data): array
+    {
         // Flat and unflat the array and tweak the content along the way...
         return Arr::undot(
             collect(Arr::dot($data))
